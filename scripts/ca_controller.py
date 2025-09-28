@@ -11,7 +11,11 @@ import math
 ##
 
 ## LIDAR INFORMATION 
-# Contrary to simulation, real robot does not receive exactly 360 measures every scan (more or less around 270). Therefore it is necessary to know where it started its scan, the angle between two measures (provided by the robot /scan topic). We can use this information to convert that to 0 - 360 information in order to facilitate processing. The lambda function below helps doing that. In the end, the user receives two arrays of same lengths. The first array contains the angles and the second array contains the distances. (0 degree is ahead, 90 is left, 180 is behind and 270 is right)
+# Contrary to simulation, real robot does not receive exactly 360 measures every scan (more or less around 270). 
+# Therefore it is necessary to know where it started its scan, the angle between two measures (provided by the robot /scan topic). 
+# We can use this information to convert that to 0 - 360 information in order to facilitate processing. 
+# The lambda function below helps doing that. In the end, the user receives two arrays of same lengths. 
+# The first array contains the angles and the second array contains the distances. (0 degree is ahead, 90 is left, 180 is behind and 270 is right)
 # More information on how to process lidar data https://stanbaek.github.io/ece387/Module8_LIDAR/LIDAR.html
 
 
@@ -33,7 +37,7 @@ class CollisionAvoidance:
         self.scan_sub = rospy.Subscriber('/scan', LaserScan, self.scan_callback)
 
         # TODO - Define a safety threshold in meters (Minimum distance to consider an obstacle (in meters))
-        self.min_dist = -1
+        self.min_dist = 0.4
 
         rospy.loginfo("Collision avoidance controller initialized with min_dist = %f", self.min_dist)
 
@@ -43,9 +47,6 @@ class CollisionAvoidance:
 
         # Main loop rate
         self.rate = rospy.Rate(10)  # 10 Hz
-
-
-
 
     # Callback function to process LIDAR scan data
     # This function will be called whenever a new scan message is received
@@ -89,23 +90,26 @@ class CollisionAvoidance:
                 elif 300 <= deg <= 330:
                     right.append(rng)
 
-
-
         # TODO - Find minimum distances for each considered direction
-        min_front_dist = -1
-        min_left_dist = -1
-        min_right_dist = -1
+        min_front_dist = min(front)
+        min_left_dist = min(left)
+        min_right_dist = min(right)
 
         rospy.loginfo("Front distance: %f, Left distance: %f, Right distance: %f", min_front_dist, min_left_dist, min_right_dist)
 
-
-
         # TODO - Create the decision logic for the motion. Currently it just moves forward.
+        if min_front_dist < self.min_dist:
+            # Rotate leftwards
+            self.twist.linear.x = 0.0
+            self.twist.angular.z = 0.2
+        else:
+            # Move forward 
+            self.twist.linear.x = 0.2
+            self.twist.angular.z = 0.0
+
+
         # TODO - Recommendation: choose to rotate left or right if something is detected ahead, below the defined safety_threshold, otherwise move straight forward. 
 
-        # Move forward 
-        self.twist.linear.x = 0.2
-        self.twist.angular.z = 0.0
 
         # Send motion commands to motors
         self.cmd_vel_pub.publish(self.twist)
