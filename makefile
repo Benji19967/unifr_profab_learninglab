@@ -7,7 +7,9 @@ sim_collavoidance:
 # 1.) local-1: roscore
 # 2.) local-2: make ssh_robot
 # 3.) robot-1: roslaunch turtlebot3_bringup turtlebot3_robot.launch
-# 4.) local-3: make teleop
+
+# 4.a) local-3: make teleop
+# 4.b) local-3: rosrun turtlebot3_profab ca_controller.py
 
 ssh_robot:
 	ssh ${TURTLEBOT3_HOSTNAME}
