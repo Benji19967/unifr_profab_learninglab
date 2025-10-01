@@ -11,9 +11,14 @@ sim_collavoidance:
 # 4.a) local-3: make teleop
 # 4.b) local-3: rosrun turtlebot3_profab ca_controller.py
 
+# To see the real robot in simulation
+# 5.) Optional: make gazebo 
+
 ssh_robot:
 	ssh ${TURTLEBOT3_HOSTNAME}
 
 teleop:
 	roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 
+gazebo:
+	roslaunch turtlebot3_gazebo turtlebot3_world.launch
