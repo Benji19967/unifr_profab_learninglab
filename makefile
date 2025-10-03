@@ -1,6 +1,9 @@
 sim_collavoidance:
 	roslaunch turtlebot3_profab sim_collavoid.launch
 
+sim_goal:
+	rosrun turtlebot3_profab goal_controller.py
+
 
 # Control robot
 #
@@ -22,3 +25,12 @@ teleop:
 
 gazebo:
 	roslaunch turtlebot3_gazebo turtlebot3_world.launch
+
+slam:
+	roslaunch turtlebot3_slam turtlebot3_slam.launch
+
+navigation:
+	roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/ubuntu/profab_ws/map/simulation.yaml
+
+rqt:
+	rqt
