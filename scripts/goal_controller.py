@@ -97,7 +97,7 @@ class GoalNavigation:
 
         self.euclidean_distance = math.sqrt(delta_x ** 2 + delta_y ** 2)
         if self.euclidean_distance <= 50 * CENTIMETER_TO_METER:
-            pass
+            self.gotogoal(self.other_goal)
 
         rospy.loginfo("distance to goal %f",self.euclidean_distance)          
 
