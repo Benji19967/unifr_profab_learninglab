@@ -2,6 +2,8 @@
 
 Exercises for the course Prototyping and Fabrication in the Learning Lab at the University of Fribourg
 
+Official course repo: https://github.com/nembrinj/protofablab/tree/main
+
 ## Package
 
 This package was created with:
