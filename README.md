@@ -4,12 +4,10 @@ Exercises for the course Prototyping and Fabrication in the Learning Lab at the 
 
 Official course repo: https://github.com/nembrinj/protofablab/tree/main
 
-## Package
-
-This package was created with:
+## Creating a package
 
 ```bash
-cd ~/profab_ws/src
+cd src/
 catkin_create_pkg turtlebot3_profab std_msgs turtlebot3_msgs sensor_msgs geometry_msgs rospy
 ```
 
@@ -23,3 +21,17 @@ hostname -I
 sudo nmap -sn <hostname>/24
 ```
 find ubuntu entry
+
+## Git user isolation on bot
+
+```shell
+sudo adduser <name>
+git config --global user.name "<name>"
+git config --global user.email "<email>"
+```
+
+## Using ssh key of laptop
+
+```shell
+ssh -A <user>@<ip>
+```
