@@ -10,3 +10,14 @@ This package was created with:
 cd ~/profab_ws/src
 catkin_create_pkg turtlebot3_profab std_msgs turtlebot3_msgs sensor_msgs geometry_msgs rospy
 ```
+
+## Finding the IP address of the Raspberry Pi
+
+Make sure the Raspberry is connected to the same local network as 
+your laptop/PC (e.g. use ethernet cable for the Raspberry Pi)
+
+```shell
+hostname -I
+sudo nmap -sn <hostname>/24
+```
+find ubuntu entry
