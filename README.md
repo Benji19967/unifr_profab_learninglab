@@ -11,6 +11,16 @@ cd src/
 catkin_create_pkg turtlebot3_profab std_msgs turtlebot3_msgs sensor_msgs geometry_msgs rospy
 ```
 
+## Installing external packages
+
+### On the robot
+
+```shell
+sudo apt-get install python3-vcstool
+cd src/
+vcs-import < ../dependencies-bot.yaml
+```
+
 ## Finding the IP address of the Raspberry Pi
 
 Make sure the Raspberry is connected to the same local network as 
