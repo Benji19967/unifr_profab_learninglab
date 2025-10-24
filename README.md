@@ -22,7 +22,7 @@ sudo nmap -sn <hostname>/24
 ```
 find ubuntu entry
 
-## Git user isolation on bot
+## Git user isolation on bot (not great, separate HOMEs=
 
 ```shell
 sudo adduser <name>
