@@ -1,6 +1,13 @@
+# Ignore packages by default
+src/*/
+
+# Add our packages
+!src/turtlebot3_profab/
+
 devel/
 logs/
 build/
+map/
 bin/
 lib/
 msg_gen/
@@ -49,3 +56,5 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+
+.catkin_workspace
