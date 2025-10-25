@@ -20,6 +20,9 @@ sim_goal:
 ssh_robot:
 	ssh ${TURTLEBOT3_HOSTNAME}
 
+robot:
+	roslaunch turtlebot3_bringup turtlebot3_robot.launch
+
 teleop:
 	roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 
