@@ -35,5 +35,8 @@ navigation:
 navigation_map:
 	roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/ubuntu/profab_ws/map/simulation.yaml
 
+camera:
+	roslaunch turtlebot3_profab turtlebot3_robot_usbcam.launch
+
 rqt:
 	rqt
