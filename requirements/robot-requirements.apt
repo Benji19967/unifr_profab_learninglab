@@ -19,6 +19,14 @@ ros-noetic-rosserial-msgs
 # Required
 ros-noetic-interactive-markers
 
+# Camera
+libv4l-dev
+ros-noetic-image-transport
+ros-noetic-camera-info-manager
+ros-noetic-usb-cam
+# Missing in the instructions
+ros-noetic-image-view
+
 # Optional: image compression / camera
 ros-noetic-compressed-image-transport
 
