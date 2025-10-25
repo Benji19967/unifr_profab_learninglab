@@ -36,6 +36,7 @@ hostname -I
 sudo nmap -sn <hostname>/24
 ```
 find ubuntu entry
+
 ## Git user isolation on bot (not great, separate HOMEs)
 
 ```shell
@@ -48,4 +49,10 @@ git config --global user.email "<email>"
 
 ```shell
 ssh -A <user>@<ip>
+```
+
+## Launch Node-RED dashboard
+
+```shell
+node-red node-red/<dashboard name>
 ```
