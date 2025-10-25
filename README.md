@@ -15,10 +15,15 @@ catkin_create_pkg turtlebot3_profab std_msgs turtlebot3_msgs sensor_msgs geometr
 
 ### On the robot
 
+Repo dependencies
 ```shell
 sudo apt-get install python3-vcstool
 cd src/
-vcs-import < ../dependencies-bot.yaml
+vcs-import < ../dependencies-bot.repos
+```
+Binary dependencies
+```shell
+./install_apt_requirements.sh requirements/robot-requirements.apt
 ```
 
 ## Finding the IP address of the Raspberry Pi
