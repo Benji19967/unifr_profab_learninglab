@@ -16,6 +16,17 @@ ros-noetic-rosserial-arduino
 ros-noetic-rosserial-client
 ros-noetic-rosserial-msgs
 
+# Required
+ros-noetic-interactive-markers
+
+# Camera
+libv4l-dev
+ros-noetic-image-transport
+ros-noetic-camera-info-manager
+ros-noetic-usb-cam
+# Missing in the instructions
+ros-noetic-image-view
+
 # Optional: image compression / camera
 ros-noetic-compressed-image-transport
 
@@ -25,6 +36,7 @@ ros-noetic-map-server
 ros-noetic-move-base
 ros-noetic-navigation
 ros-noetic-gmapping
+
 
 # Optional: if new raw laser scan stream (usually not needed with TB3 Lidar)
 # ros-noetic-laser-proc
