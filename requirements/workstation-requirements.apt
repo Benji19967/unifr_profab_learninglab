@@ -17,4 +17,7 @@ ros-noetic-rqt*
 ros-noetic-rviz
 ros-noetic-gmapping
 ros-noetic-navigation
-ros-noetic-interactive-marker
+ros-noetic-interactive-markers
+
+# Connect ROS with Node-RED, ...
+ros-noetic-rosbridge-server

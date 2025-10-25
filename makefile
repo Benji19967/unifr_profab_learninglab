@@ -38,5 +38,8 @@ navigation_map:
 camera:
 	roslaunch turtlebot3_profab turtlebot3_robot_usbcam.launch
 
+server:
+	roslaunch rosbridge_server rosbridge_websocket.launch
+
 rqt:
 	rqt
