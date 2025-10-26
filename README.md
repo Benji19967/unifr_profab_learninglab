@@ -76,3 +76,11 @@ In a third terminal:
 rostopic pub light_intensity std_msgs/Int16 <value between 0 and 255> --once
 ```
 
+## Controlling the (Arduino) light intensity via Node-RED
+
+```shell
+make server
+make light_node
+node-red ./node-red/light_ros.json
+```
+
