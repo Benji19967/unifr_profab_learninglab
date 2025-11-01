@@ -44,6 +44,9 @@ navigation_map:
 camera:
 	roslaunch turtlebot3_profab turtlebot3_robot_usbcam.launch
 
+light_node:
+	rosrun rosserial_python serial_node.py tcp 11511
+
 server:
 	roslaunch rosbridge_server rosbridge_websocket.launch
 

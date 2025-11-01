@@ -56,3 +56,31 @@ ssh -A <user>@<ip>
 ```shell
 node-red node-red/<dashboard name>
 ```
+
+## Controlling the (Arduino) light intensity via a ROS Node
+
+Deploy `./arduino/light_ros` onto the arduino (use correct Wifi credentials). 
+
+Make sure tcp port (`make light_node`) and topic name match up with the Arduino code. 
+
+In 2 different terminals:
+
+```shell
+roscore
+make light_node
+```
+
+In a third terminal:
+
+```shell
+rostopic pub light_intensity std_msgs/Int16 <value between 0 and 255> --once
+```
+
+## Controlling the (Arduino) light intensity via Node-RED
+
+```shell
+make server
+make light_node
+node-red ./node-red/light_ros.json
+```
+
