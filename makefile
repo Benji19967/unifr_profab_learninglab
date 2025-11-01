@@ -38,8 +38,16 @@ navigation:
 navigation_map:
 	roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/ubuntu/profab_ws/map/simulation.yaml
 
+# CAMERA
+# 1.) On computer:
+# make navigation (launches rviz)
+# 2.) On robot:
 camera:
 	roslaunch turtlebot3_profab turtlebot3_robot_usbcam.launch
+# Check it works:
+# rostopic echo /usb_cam/camera_info
+# rostopic echo /usb_cam/camera_info
+# Otherwise: pgrep video and pkill -9 <video-process-id>
 
 light_node:
 	rosrun rosserial_python serial_node.py tcp 11511

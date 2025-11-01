@@ -37,6 +37,12 @@ sudo nmap -sn <hostname>/24
 ```
 find ubuntu entry
 
+## Updating the Wifi settings on the Raspberry Pi
+
+```shell
+sudo vim /etc/netplan/50-cloud-init.yaml
+```
+
 ## Git user isolation on bot (not great, separate HOMEs)
 
 ```shell
