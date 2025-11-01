@@ -1,3 +1,6 @@
+collavoidance:
+	roslaunch turtlebot3_profab collavoid.launch
+
 sim_collavoidance:
 	roslaunch turtlebot3_profab sim_collavoid.launch
 
