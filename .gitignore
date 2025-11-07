@@ -4,6 +4,9 @@ src/*/
 # Add our packages
 !src/turtlebot3_profab/
 
+# Arduino libraries
+arduino/libraries/
+
 devel/
 logs/
 build/

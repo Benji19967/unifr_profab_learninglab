@@ -19,8 +19,10 @@ void setup() {
 }
 
 void loop(){
+  // Note: .step() is a blocking call -- it will execute the number of steps specified and then return.
+
   Serial.println("Clockwise rotation");
-  myStepper.step(stepsPerRevolution);   // one full rotation CW
+  myStepper.step(stepsPerRevolution);   // one full rotation CW.
   delay(2000);
 
   Serial.println("Counterclockwise rotation");

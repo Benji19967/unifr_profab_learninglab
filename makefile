@@ -55,6 +55,9 @@ camera:
 light_node:
 	rosrun rosserial_python serial_node.py tcp 11511
 
+motor_node:
+	rosrun rosserial_python serial_node.py tcp 11511
+
 server:
 	roslaunch rosbridge_server rosbridge_websocket.launch
 

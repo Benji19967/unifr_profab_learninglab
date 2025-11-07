@@ -90,3 +90,26 @@ make light_node
 node-red ./node-red/light_ros.json
 ```
 
+## Controlling the motor speed (in RPMs) via a ROS Node
+Deploy `./arduino/motor_ros` onto the arduino (use correct Wifi credentials). 
+
+Make sure tcp port (`make motor_node`) and topic name match up with the Arduino code. 
+
+In 2 different terminals:
+
+```shell
+roscore
+make motor_node
+```
+
+In a third terminal:
+
+```shell
+rostopic pub motor_speed std_msgs/Int16 <value between 0 and 15> --once
+```
+
+or, for negative values:
+
+```shell
+rostopic pub motor_speed std_msgs/Int16 "data: <value between -15 and 15>" --once
+```
