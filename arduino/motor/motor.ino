@@ -13,8 +13,8 @@ int motorPin3 = 11;
 int motorPin4 = 12;
 // Red - 28BYJ48 pin 5 (VCC)
 int motorSpeed = 1200; //variable to set stepper speed
-int count = 0; // count of steps made
-int countsperrev = 512; // number of steps per full revolution
+int numSteps = 0;
+int stepsPerRevolution = 512; // number of steps per full revolution
 int lookup[8] = {B01000, B01100, B00100, B00110, B00010, B00011, B00001, B01001};
 //////////////////////////////////////////////////////////////////////////////
 void setup() {
@@ -28,13 +28,13 @@ void setup() {
 
 //////////////////////////////////////////////////////////////////////////////
 void loop(){
-  if(count < countsperrev )
+  if(numSteps < stepsPerRevolution)
     clockwise();
-  else if (count == countsperrev * 2)
-    count = 0;
   else
     anticlockwise();
-  count++;
+  if (numSteps == stepsPerRevolution * 2)
+    numSteps = 0;
+  numSteps++;
 }
 //////////////////////////////////////////////////////////////////////////////
 //set pins to ULN2003 high in sequence from 1 to 4
