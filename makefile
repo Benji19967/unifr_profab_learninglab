@@ -7,6 +7,8 @@ sim_collavoidance:
 sim_goal:
 	rosrun turtlebot3_profab goal_controller.py
 
+image_processing:
+	rosrun turtlebot3_profab image_processing.py
 
 # Control robot
 #
@@ -51,6 +53,9 @@ camera:
 # rostopic echo /usb_cam/camera_info
 # rostopic echo /usb_cam/camera_info
 # Otherwise: pgrep video and pkill -9 <video-process-id>
+
+camera_laptop:
+	roslaunch turtlebot3_profab laptop_usbcam.launch
 
 # Launches a ROS node to handle serial communication with the Arduino over TCP. 
 # I.e. ROS message -> (serialize) -> byte sequence over TCP -> (deserialize) -> ROS message
