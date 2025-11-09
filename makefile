@@ -52,12 +52,19 @@ camera:
 # rostopic echo /usb_cam/camera_info
 # Otherwise: pgrep video and pkill -9 <video-process-id>
 
+# Launches a ROS node to handle serial communication with the Arduino over TCP. 
+# I.e. ROS message -> (serialize) -> byte sequence over TCP -> (deserialize) -> ROS message
+# This node, running on the PC, is a rosserial server.
+# On the Arduino, there is a rosserial client running (via the "Rosserial Arduino Library")
+# Based on the configs of the Arduino, will create publishers and subscribers.
+# TODO: maybe rename to rosserial_node
 light_node:
 	rosrun rosserial_python serial_node.py tcp 11511
 
 motor_node:
 	rosrun rosserial_python serial_node.py tcp 11511
 
+# ROS node used for Node-RED <-> ROS communication
 server:
 	roslaunch rosbridge_server rosbridge_websocket.launch
 
