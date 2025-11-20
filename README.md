@@ -113,3 +113,15 @@ or, for negative values:
 ```shell
 rostopic pub motor_speed std_msgs/Int16 "data: <value between -15 and 15>" --once
 ```
+
+## Creating a custom map
+
+```shell
+make robot (on robot)
+roscore
+make gazebo
+make slam
+make teleop 
+```
+
+move around using teleop.
