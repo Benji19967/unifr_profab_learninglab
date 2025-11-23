@@ -1,49 +1,53 @@
 #!/usr/bin/env python3
+
+
 import math
 import rospy
 from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped, Twist, Point
 from move_base_msgs.msg import MoveBaseActionResult
 
-##
-## Exercise
-## You need to fill the TODO parts to implement your logic
-##
 
 CENTIMETER_TO_METER = 1 / 100
 
-class GoalNavigation:
+
+class GoalController:
     def __init__(self):
-        rospy.init_node('goal_controller', anonymous=True)
+        rospy.init_node("goal_controller", anonymous=True)
         rospy.loginfo("Goal controller has started")
 
         # Do some cleanup on shutdown
         rospy.on_shutdown(self.clean_shutdown)
 
         # Publisher to goal commands
-        self.goal_pub = rospy.Publisher('/move_base_simple/goal', PoseStamped, queue_size=10)
+        self.goal_pub = rospy.Publisher(
+            "/move_base_simple/goal", PoseStamped, queue_size=10
+        )
 
         # Subscriber to goal result information (receives once a message when the robot arrived to its destination goal)
-        self.result_sub = rospy.Subscriber('/move_base/result', MoveBaseActionResult, self.result_callback)
+        self.result_sub = rospy.Subscriber(
+            "/move_base/result", MoveBaseActionResult, self.result_callback
+        )
 
         # Subscriber to current position information
-        self.position_sub = rospy.Subscriber('/amcl_pose', PoseWithCovarianceStamped, self.position_callback)
+        self.position_sub = rospy.Subscriber(
+            "/amcl_pose", PoseWithCovarianceStamped, self.position_callback
+        )
 
         # pre-define the two goals
         self.goal1 = PoseStamped()
-        self.goal1.header.frame_id = 'map'
+        self.goal1.header.frame_id = "map"
         self.goal1.pose.position.x = 2.0
         self.goal1.pose.orientation.z = 1.0
 
         self.goal2 = PoseStamped()
-        self.goal2.header.frame_id = 'map'
+        self.goal2.header.frame_id = "map"
         self.goal2.pose.position.x = -2.0
         self.goal2.pose.orientation.z = 1.0
 
-        # Initialize Pose message for goal commands    
+        # Initialize Pose message for goal commands
         # This message will be used to send position (x,y,z) and orientation (quaternion) to the robot
         self.goal = self.goal1
         self.other_goal = self.goal2
-
 
         self.goal_status = -1
         self.euclidean_distance = -1
@@ -53,10 +57,10 @@ class GoalNavigation:
 
         # Publisher to send velocity commands
         # used to stop the robot
-        self.cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+        self.cmd_vel_pub = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
         self.twist = Twist()
 
-        # callback that handles the main robot logic every 0.1 second 
+        # callback that handles the main robot logic every 0.1 second
         self.timer = rospy.Timer(rospy.Duration(0.1), self.handle_robot_logic)
 
         # Main loop rate
@@ -64,7 +68,7 @@ class GoalNavigation:
 
     # Callback function to process goal result data
     def result_callback(self, msg):
-        #rospy.loginfo("Goal result %s", msg.status.status)     
+        # rospy.loginfo("Goal result %s", msg.status.status)
         self.goal_status = msg.status.status
         if self.goal_status == 3:
             rospy.loginfo("Goal reached successfully")
@@ -79,14 +83,12 @@ class GoalNavigation:
         elif self.goal_status == 0:
             rospy.loginfo("Goal status is pending")
 
-
     # Callback function to process robot position data
     # This function will be called whenever a new amcl_pose message is received
     def position_callback(self, msg):
-
         rospy.loginfo(msg.pose.pose)
 
-        # TODO 2 Calculate the euclidean distance to the goal 
+        # TODO 2 Calculate the euclidean distance to the goal
         # and use this information to switch goal whenever you are within 50cm of the goal
         # Hint: you can use the self.goal variable to access the current goal position
 
@@ -95,13 +97,13 @@ class GoalNavigation:
         delta_x = goal_pos.x - curr_pos.x
         delta_y = goal_pos.y - curr_pos.y
 
-        self.euclidean_distance = math.sqrt(delta_x ** 2 + delta_y ** 2)
+        self.euclidean_distance = math.sqrt(delta_x**2 + delta_y**2)
         if self.euclidean_distance <= 50 * CENTIMETER_TO_METER:
             self.gotogoal(self.other_goal)
 
-        rospy.loginfo("distance to goal %f",self.euclidean_distance)          
+        rospy.loginfo("distance to goal %f", self.euclidean_distance)
 
-    def gotogoal(self,goal):
+    def gotogoal(self, goal):
         self.goal_status = -1  # reset goal status
         self.goal = goal
         self.other_goal = self.goal2 if goal == self.goal1 else self.goal1
@@ -110,9 +112,8 @@ class GoalNavigation:
         rospy.loginfo("New goal is sent to the robot:")
         rospy.loginfo(self.goal)
 
-    #This function callback handles the main robot logic every 0.1 second
+    # This function callback handles the main robot logic every 0.1 second
     def handle_robot_logic(self, timer_event):
-
         # Issue a goal command after 2 seconds
         if self.goaltimer > 0:
             self.goaltimer -= 1
@@ -124,10 +125,8 @@ class GoalNavigation:
         if self.goal_status == 3:
             self.gotogoal(self.other_goal)
 
-
     # Main loop. spin is blocking and only allows to processes callbacks
     def run(self):
-
         while not rospy.is_shutdown():
             rospy.spin()
 
@@ -140,7 +139,8 @@ class GoalNavigation:
 
         rospy.loginfo("Robot stopped.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     try:
         controller = GoalNavigation()
         controller.run()
