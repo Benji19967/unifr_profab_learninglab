@@ -37,11 +37,14 @@ gazebo:
 slam:
 	roslaunch turtlebot3_slam turtlebot3_slam.launch
 
+save_map:
+	rosrun map_server map_saver -f ~/profab_ws/map/profablab_01
+
 navigation:
 	roslaunch turtlebot3_navigation turtlebot3_navigation.launch
 
 navigation_map:
-	roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/ubuntu/profab_ws/map/simulation.yaml
+	roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/ubuntu/profab_ws/map/profablab_01.yaml
 
 # CAMERA
 # 1.) On computer:

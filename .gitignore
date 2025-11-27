@@ -10,7 +10,6 @@ arduino/libraries/
 devel/
 logs/
 build/
-map/
 bin/
 lib/
 msg_gen/
