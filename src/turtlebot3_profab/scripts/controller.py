@@ -1,15 +1,26 @@
 #!/usr/bin/env python3
 
+import yaml
 import math
 from typing import Optional
 import rospy
 from std_msgs.msg import Int16
-from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped, Twist
+from geometry_msgs.msg import (
+    PoseStamped,
+    PoseWithCovarianceStamped,
+    Twist,
+    Pose,
+    Point,
+    Quaternion,
+)
 from move_base_msgs.msg import MoveBaseActionResult
+from pathlib import Path
 
 NODE_NAME = "controller"
 MOTOR_TOPIC_NAME = "motor_speed"
 LIGHT_TOPIC_NAME = "light_intensity"
+
+GOAL_POSES_FILENAME = Path("map") / "goal_poses.yaml"
 
 MAIN_LOGIC_CALLBACK_INTERVAL = 0.1
 
@@ -18,6 +29,23 @@ MAIN_LOGIC_CALLBACK_INTERVAL = 0.1
 # TODO: Send goal commands
 # TODO: Send motor and light control commands
 # TODO: Make sure we can also command light and motor via Node-RED
+
+
+def load_goal_poses():
+    with open(GOAL_POSES_FILENAME) as f:
+        goal_poses = yaml.safe_load(f)
+        p1 = goal_poses["pose1"]
+        p2 = goal_poses["pose2"]
+
+        goal1 = Pose(
+            position=Point(**p1["position"]),
+            orientation=Quaternion(**p1["orientation"]),
+        )
+        goal2 = Pose(
+            position=Point(**p2["position"]),
+            orientation=Quaternion(**p2["orientation"]),
+        )
+        return [goal1, goal2]
 
 
 class Controller:
@@ -54,7 +82,7 @@ class Controller:
         # Publisher to send velocity commands -- used to stop the robot
         self.cmd_vel_pub = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
 
-        self.goal: Optional[PoseStamped] = None
+        self.goals: list[Pose] = load_goal_poses()
 
     def result_callback(self, msg: MoveBaseActionResult):
         """
