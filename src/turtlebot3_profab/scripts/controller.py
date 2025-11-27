@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import time
 import yaml
 import math
 from typing import Optional
@@ -15,12 +16,15 @@ from geometry_msgs.msg import (
 )
 from move_base_msgs.msg import MoveBaseActionResult
 from pathlib import Path
+import os
+
+HERE = Path(__file__).parent
 
 NODE_NAME = "controller"
 MOTOR_TOPIC_NAME = "motor_speed"
 LIGHT_TOPIC_NAME = "light_intensity"
 
-GOAL_POSES_FILENAME = Path("map") / "goal_poses.yaml"
+GOAL_POSES_FILENAME = Path(HERE) / ".." / ".." / ".." / "map" / "goal_poses.yaml"
 INITIAL_GOAL_INDEX = 0
 
 MAIN_LOGIC_CALLBACK_INTERVAL = 0.1
@@ -49,6 +53,8 @@ def load_goal_poses():
 
 class Controller:
     def __init__(self):
+        self.FIRST = True
+
         rospy.init_node(NODE_NAME, anonymous=True)
         rospy.loginfo("Starting controller")
 
@@ -137,9 +143,12 @@ class Controller:
         MAIN_LOGIC_CALLBACK_INTERVAL seconds
         """
         # TODO
+        # rospy.wait_for_service("/move_base_simple/goal")
+
         self.go_to_goal(INITIAL_GOAL_INDEX)
-        if self.goal_status == 3:  # reached goal
-            rospy.loginfo(f"Reached goal {self.curr_goal_idx}")
+        time.sleep(10)
+        # if self.goal_status == 3:  # reached goal
+        #    rospy.loginfo(f"Reached goal {self.curr_goal_idx}")
 
     # Main loop. spin is blocking and only allows to processes callbacks
     def run(self):

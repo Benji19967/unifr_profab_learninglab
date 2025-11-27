@@ -162,15 +162,19 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
-  scripts/ca_controller.py
+  scripts/tutorial_ca_controller.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 catkin_install_python(PROGRAMS 
-    scripts/goal_controller.py 
+    scripts/tutorial_goal_controller.py 
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 catkin_install_python(PROGRAMS 
     scripts/image_processing.py 
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+catkin_install_python(PROGRAMS 
+    scripts/controller.py 
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
