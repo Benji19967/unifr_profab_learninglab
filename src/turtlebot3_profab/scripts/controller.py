@@ -4,7 +4,7 @@ import yaml
 import math
 from typing import Optional
 import rospy
-from std_msgs.msg import Int16
+from std_msgs.msg import Int16, Header
 from geometry_msgs.msg import (
     PoseStamped,
     PoseWithCovarianceStamped,
@@ -21,11 +21,10 @@ MOTOR_TOPIC_NAME = "motor_speed"
 LIGHT_TOPIC_NAME = "light_intensity"
 
 GOAL_POSES_FILENAME = Path("map") / "goal_poses.yaml"
+INITIAL_GOAL_INDEX = 0
 
 MAIN_LOGIC_CALLBACK_INTERVAL = 0.1
 
-# TODO: Create a map
-# TODO: Define goals on map
 # TODO: Send goal commands
 # TODO: Send motor and light control commands
 # TODO: Make sure we can also command light and motor via Node-RED
@@ -82,6 +81,7 @@ class Controller:
         # Publisher to send velocity commands -- used to stop the robot
         self.cmd_vel_pub = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
 
+        self.curr_goal_idx: int = 0
         self.goals: list[Pose] = load_goal_poses()
 
     def result_callback(self, msg: MoveBaseActionResult):
@@ -110,11 +110,10 @@ class Controller:
         """
         rospy.loginfo(msg.pose.pose)
 
-        if not self.goal:
-            raise ValueError("No goal defined")
+        curr_goal: Pose = self.goals[self.curr_goal_idx]
 
         curr_pos = msg.pose.pose.position
-        goal_pos = self.goal.pose.position
+        goal_pos = curr_goal.position
         delta_x = goal_pos.x - curr_pos.x
         delta_y = goal_pos.y - curr_pos.y
 
@@ -122,13 +121,25 @@ class Controller:
 
         rospy.loginfo("distance to goal %f cm", self.euclidean_distance)
 
+    def go_to_goal(self, goal_index: int):
+        goal = PoseStamped(
+            header=Header(stamp=rospy.Time.now(), frame_id="map"),
+            pose=self.goals[goal_index],
+        )
+        self.goal_pub.publish(goal)
+        self.curr_goal_idx = goal_index
+        rospy.loginfo("New goal is sent to the robot:")
+        rospy.loginfo(goal)
+
     def main_logic_callback(self, timer_event):
         """
         This function callback handles the main robot logic every
         MAIN_LOGIC_CALLBACK_INTERVAL seconds
         """
         # TODO
-        pass
+        self.go_to_goal(INITIAL_GOAL_INDEX)
+        if self.goal_status == 3:  # reached goal
+            rospy.loginfo(f"Reached goal {self.curr_goal_idx}")
 
     # Main loop. spin is blocking and only allows to processes callbacks
     def run(self):
