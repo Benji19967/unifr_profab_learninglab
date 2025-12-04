@@ -144,38 +144,14 @@
         "className": ""
     },
     {
-        "id": "86a52016f832f8fd",
-        "type": "debug",
-        "z": "24d44b42125fca5d",
-        "name": "light debug",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 570,
-        "y": 480,
-        "wires": []
+        "id": "0a50a7c875b04700",
+        "type": "ros-server",
+        "url": "ws://0.0.0.0:9090"
     },
     {
-        "id": "56a15ca79f5fa36e",
-        "type": "debug",
-        "z": "24d44b42125fca5d",
-        "name": "motor debug",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 570,
-        "y": 540,
-        "wires": []
+        "id": "c64831fa417a7c38",
+        "type": "ros-server",
+        "url": "ws://0.0.0.0:9090"
     },
     {
         "id": "a66b7be2a7220d8c",
@@ -301,7 +277,7 @@
         "y": 480,
         "wires": [
             [
-                "86a52016f832f8fd"
+                "de164e7c58d2d8de"
             ]
         ]
     },
@@ -328,8 +304,74 @@
         "y": 540,
         "wires": [
             [
-                "56a15ca79f5fa36e"
+                "957c66f72455d2a9"
             ]
         ]
+    },
+    {
+        "id": "de164e7c58d2d8de",
+        "type": "function",
+        "z": "24d44b42125fca5d",
+        "name": "format payload 1",
+        "func": "msg.payload = {\n    \"data\": msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 480,
+        "wires": [
+            [
+                "13cb7e7df3cb9f9f"
+            ]
+        ]
+    },
+    {
+        "id": "13cb7e7df3cb9f9f",
+        "type": "ros-publish",
+        "z": "24d44b42125fca5d",
+        "server": "0a50a7c875b04700",
+        "topicname": "/light_intensity",
+        "typepackage": "std_msgs",
+        "typename": "Int16",
+        "stampheader": false,
+        "x": 820,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "957c66f72455d2a9",
+        "type": "function",
+        "z": "24d44b42125fca5d",
+        "name": "format payload 2",
+        "func": "msg.payload = {\n    \"data\": msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 540,
+        "wires": [
+            [
+                "4a5f5b95bcf078e5"
+            ]
+        ]
+    },
+    {
+        "id": "4a5f5b95bcf078e5",
+        "type": "ros-publish",
+        "z": "24d44b42125fca5d",
+        "server": "c64831fa417a7c38",
+        "topicname": "/motor_speed",
+        "typepackage": "std_msgs",
+        "typename": "Int16",
+        "stampheader": false,
+        "x": 820,
+        "y": 540,
+        "wires": []
     }
 ]

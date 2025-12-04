@@ -69,6 +69,8 @@ Deploy `./arduino/light_ros` onto the arduino (use correct Wifi credentials).
 
 Make sure tcp port (`make light_node`) and topic name match up with the Arduino code. 
 
+Make sure the IP Adress in the Arduino code matches the roscore ip adress.
+
 In 2 different terminals:
 
 ```shell

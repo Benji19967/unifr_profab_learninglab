@@ -12,7 +12,7 @@ const char *password = "";
 // ip of your ROS machine (for Windows, if you use port
 // forwarding, it is the IP of Windows and you need to have port forwarding to redirect
 // packets to your WSL linux)
-IPAddress server(192, 168, 1, 138); 
+IPAddress server(192, 168, 1, 12); 
 
 ros::NodeHandle nh; // the node
 std_msgs::String str_msg;  // the type of message that will be sent

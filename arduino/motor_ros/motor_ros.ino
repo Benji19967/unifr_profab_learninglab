@@ -4,6 +4,10 @@
 // 2.) In the Library Manager search box, type AccelStepper or Rosserial Arduino Library
 // 3.) Click Install
 // 4.) Once installed, restart the IDE and compile.
+
+// Board:
+// Adafruit Feather ESP32-S3 2MB PSRAM
+
 #include <AccelStepper.h>
 #include "WiFi.h"
 #include <ros.h>
@@ -15,7 +19,7 @@ const char *ssid = "";
 const char *password = "";
 
 // Ip of your ROS machine
-IPAddress server(192, 168, 1, 138); 
+IPAddress server(192, 168, 1, 12);
 
 int motorPin9 = 9;   // Driver: IN1
 int motorPin10 = 10; // Driver: IN2
@@ -58,7 +62,7 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   // Setup connection to ROS machine (server)
-  nh.getHardware()->setConnection(server, 11511);
+  nh.getHardware()->setConnection(server, 11512);
   nh.initNode();
   nh.subscribe(sub);
 
