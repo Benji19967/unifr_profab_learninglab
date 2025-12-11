@@ -455,5 +455,65 @@
         "x": 850,
         "y": 340,
         "wires": []
+    },
+    {
+        "id": "847a93520460fadf",
+        "type": "ui_slider",
+        "z": "24d44b42125fca5d",
+        "name": "",
+        "label": "Light frequency",
+        "tooltip": "",
+        "group": "bc176cb17f3ab9e3",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "light",
+        "topicType": "msg",
+        "min": 0,
+        "max": "20",
+        "step": 1,
+        "className": "",
+        "x": 320,
+        "y": 420,
+        "wires": [
+            [
+                "eef9445be21a58ab"
+            ]
+        ]
+    },
+    {
+        "id": "eef9445be21a58ab",
+        "type": "function",
+        "z": "24d44b42125fca5d",
+        "name": "format payload 0",
+        "func": "msg.payload = {\n    \"data\": msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 420,
+        "wires": [
+            [
+                "adc11a80d6b27358"
+            ]
+        ]
+    },
+    {
+        "id": "adc11a80d6b27358",
+        "type": "ros-publish",
+        "z": "24d44b42125fca5d",
+        "server": "0a50a7c875b04700",
+        "topicname": "/light_frequency",
+        "typepackage": "std_msgs",
+        "typename": "Int16",
+        "stampheader": false,
+        "x": 820,
+        "y": 420,
+        "wires": []
     }
 ]
