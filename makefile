@@ -71,10 +71,10 @@ camera_laptop:
 # Based on the configs of the Arduino, will create publishers and subscribers.
 # TODO: maybe rename to rosserial_node
 light_node:
-	rosrun rosserial_python serial_node.py tcp 11511
+	rosrun rosserial_python serial_node.py tcp 11511 __name:=serial_node_1
 
 motor_node:
-	rosrun rosserial_python serial_node.py tcp 11511
+	rosrun rosserial_python serial_node.py tcp 11512 __name:=serial_node_2
 
 # ROS node used for Node-RED <-> ROS communication
 server:
