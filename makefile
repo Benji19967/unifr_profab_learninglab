@@ -48,7 +48,7 @@ navigation:
 	roslaunch turtlebot3_navigation turtlebot3_navigation.launch
 
 navigation_map:
-	roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/ubuntu/profab_ws/map/profablab_01.yaml
+	roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/ubuntu/profab_ws/map/profablab_02.yaml
 
 # CAMERA
 # 1.) On computer:
