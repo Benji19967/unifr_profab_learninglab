@@ -1,3 +1,7 @@
+# Launch navigation_map in tandem
+controller:
+	roslaunch turtlebot3_profab controller.launch
+
 collavoidance:
 	roslaunch turtlebot3_profab collavoid.launch
 
