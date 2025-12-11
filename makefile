@@ -38,7 +38,7 @@ slam:
 	roslaunch turtlebot3_slam turtlebot3_slam.launch
 
 save_map:
-	rosrun map_server map_saver -f ~/profab_ws/map/profablab_01
+	rosrun map_server map_saver -f ~/profab_ws/map/profablab_02
 
 navigation:
 	roslaunch turtlebot3_navigation turtlebot3_navigation.launch
