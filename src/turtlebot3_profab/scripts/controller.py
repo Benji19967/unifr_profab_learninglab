@@ -89,6 +89,7 @@ class Controller:
 
         self.curr_goal_idx: int = 0
         self.goals: list[Pose] = load_goal_poses()
+        self.goal_status = None
 
     def result_callback(self, msg: MoveBaseActionResult):
         """
@@ -147,7 +148,7 @@ class Controller:
 
         self.go_to_goal(INITIAL_GOAL_INDEX)
         time.sleep(10)
-        if self.goal_status == 3:  # reached goal
+        if self.goal_status and self.goal_status == 3:  # reached goal
             rospy.loginfo(f"Reached goal {self.curr_goal_idx}")
             self.set_motor_speed(10)
 
