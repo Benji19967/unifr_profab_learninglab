@@ -122,6 +122,7 @@ make teleop
 
 move around using teleop.
 
+Saving the map:
 ```shell
 rosrun map_server map_saver -f ~/profab_ws/map/<map_name>
 ```
