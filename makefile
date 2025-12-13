@@ -1,3 +1,7 @@
+# Launch navigation_map in tandem
+controller:
+	roslaunch turtlebot3_profab controller.launch
+
 collavoidance:
 	roslaunch turtlebot3_profab collavoid.launch
 
@@ -38,13 +42,13 @@ slam:
 	roslaunch turtlebot3_slam turtlebot3_slam.launch
 
 save_map:
-	rosrun map_server map_saver -f ~/profab_ws/map/profablab_01
+	rosrun map_server map_saver -f ~/profab_ws/map/profablab_02
 
 navigation:
 	roslaunch turtlebot3_navigation turtlebot3_navigation.launch
 
 navigation_map:
-	roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/ubuntu/profab_ws/map/profablab_01.yaml
+	roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/ubuntu/profab_ws/map/profablab_02.yaml
 
 # CAMERA
 # 1.) On computer:
@@ -67,10 +71,10 @@ camera_laptop:
 # Based on the configs of the Arduino, will create publishers and subscribers.
 # TODO: maybe rename to rosserial_node
 light_node:
-	rosrun rosserial_python serial_node.py tcp 11511
+	rosrun rosserial_python serial_node.py tcp 11511 __name:=serial_node_1
 
 motor_node:
-	rosrun rosserial_python serial_node.py tcp 11511
+	rosrun rosserial_python serial_node.py tcp 11512 __name:=serial_node_2
 
 # ROS node used for Node-RED <-> ROS communication
 server:

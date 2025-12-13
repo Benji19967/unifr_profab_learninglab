@@ -1,3 +1,5 @@
+// Board: ESP32C3 Dev Module
+
 #define ROSSERIAL_ARDUINO_TCP
 #define LED_PIN 10
 
@@ -12,21 +14,31 @@ const char *password = "";
 // ip of your ROS machine (for Windows, if you use port
 // forwarding, it is the IP of Windows and you need to have port forwarding to redirect
 // packets to your WSL linux)
-IPAddress server(192, 168, 1, 138); 
+IPAddress server(192, 168, 1, 12); 
 
 ros::NodeHandle nh; // the node
-std_msgs::String str_msg;  // the type of message that will be sent
 std_msgs::Int16 int_msg; // the type of message that will be received
-ros::Publisher pub("chatter", &str_msg);  // topic to publish on
 
-void message_callback( const std_msgs::Int16& light_intensity){
-  Serial.println("Received message");
-  analogWrite(LED_PIN, light_intensity.data);
+// -------- STATE --------
+volatile float freq_hz = 1.0;       // Blink frequency (Hz)
+volatile int intensity = 255;       // LED brightness (0–255)
+unsigned long lastToggle = 0;
+bool ledOn = false;
+
+void intensity_callback( const std_msgs::Int16& msg){
+  Serial.println("Received intensity");
+  intensity = constrain(msg.data, 0, 255);
 }
-ros::Subscriber<std_msgs::Int16> sub("light_intensity", &message_callback ); // topic to listen on
+void frequency_callback( const std_msgs::Int16& msg){
+  Serial.println("Received frequency");
+  if (msg.data >= 0) freq_hz = msg.data;
+}
+ros::Subscriber<std_msgs::Int16> subInt("light_intensity", &intensity_callback ); // topic to listen on
+ros::Subscriber<std_msgs::Int16> subFreq("light_frequency", &frequency_callback ); // topic to listen on
 
 void setup()
 {
+
   Serial.begin(115200);
   Serial.println();
   Serial.print("Connecting to ");
@@ -34,7 +46,7 @@ void setup()
 
   // Connect to WiFi
   WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) // -> wifi delay -> a must -> other wise it will restart continuously↪
+  while (WiFi.status() != WL_CONNECTED) // -> wifi delay -> a must -> otherwise it will restart continuously↪
   { 
     delay(500);
     Serial.print(".");
@@ -47,18 +59,32 @@ void setup()
   // Setup connection to ROS machine (server)
   nh.getHardware()->setConnection(server, 11511);
   nh.initNode();
-  // nh.advertise(pub); // the topic must be advertised to the master
-  nh.subscribe(sub);
+  nh.initNode();
+  nh.subscribe(subInt);
+  nh.subscribe(subFreq);
 }
 
 void loop()
 {
-  //Send a HelloWorld message every second
-  // std_msgs::String str;
-  // str.data = "hello world";
-  // Serial.println("Sending message");
-  // pub.publish( &str );
+  nh.spinOnce();
 
-  nh.spinOnce(); // Required, otherwise topic not detected by ROS !
-  delay(1000);
+  if (freq_hz == 0) {
+    analogWrite(LED_PIN, intensity); 
+    return;
+  }
+
+  // Compute ON/OFF toggle timing
+  float halfPeriod = (1000.0 / freq_hz) / 2.0;  // ms
+  unsigned long now = millis();
+
+  if (now - lastToggle >= halfPeriod) {
+    ledOn = !ledOn;
+    lastToggle = now;
+
+    if (ledOn) {
+      analogWrite(LED_PIN, intensity);  // LED ON → set brightness
+    } else {
+      analogWrite(LED_PIN, 0);          // LED OFF
+    }
+  }
 }

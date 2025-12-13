@@ -89,6 +89,7 @@ class Controller:
 
         self.curr_goal_idx: int = 0
         self.goals: list[Pose] = load_goal_poses()
+        self.goal_status = None
 
     def result_callback(self, msg: MoveBaseActionResult):
         """
@@ -147,8 +148,16 @@ class Controller:
 
         self.go_to_goal(INITIAL_GOAL_INDEX)
         time.sleep(10)
-        # if self.goal_status == 3:  # reached goal
-        #    rospy.loginfo(f"Reached goal {self.curr_goal_idx}")
+        if self.goal_status and self.goal_status == 3:  # reached goal
+            rospy.loginfo(f"Reached goal {self.curr_goal_idx}")
+            self.set_motor_speed(10)
+
+    def set_motor_speed(self, speed: int):
+        rospy.loginfo(f"Setting motor speed to {speed}")
+        assert -15 <= speed <= 15
+        msg = Int16()
+        msg.data = speed
+        self.motor_pub.publish(msg)
 
     # Main loop. spin is blocking and only allows to processes callbacks
     def run(self):
