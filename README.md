@@ -1,127 +1,34 @@
 # Prototyping and Fabrication in the Learning Lab
 
-Exercises for the course Prototyping and Fabrication in the Learning Lab at the University of Fribourg
+Project for the course Prototyping and Fabrication in the Learning Lab at the University of Fribourg.
 
 Official course repo: https://github.com/nembrinj/protofablab/tree/main
 
-## Creating a package
+## Project description
 
-```bash
-cd src/
-catkin_create_pkg turtlebot3_profab std_msgs turtlebot3_msgs sensor_msgs geometry_msgs rospy
-```
+We were provided an open-source mobile robot ([Turtlebot 3](https://emanual.robotis.com/docs/en/platform/turtlebot3/overview/)). The goal was to create a proof-of-concept and present it. The context of the project is a theater piece revolving around the concept train and motion. 
 
-## Installing external packages
 
-### On the robot
+## Our idea
 
-Repo dependencies
-```shell
-sudo apt-get install python3-vcstool
-cd src/
-vcs-import < ../dependencies-bot.repos
-```
-Binary dependencies
-```shell
-./install_apt_requirements.sh requirements/robot-requirements.apt
-```
+We decided to extend the robot to enable it to project a rotating scene onto a background. 
 
-## Finding the IP address of the Raspberry Pi
 
-Make sure the Raspberry is connected to the same local network as 
-your laptop/PC (e.g. use ethernet cable for the Raspberry Pi)
+## Documentation
 
-```shell
-hostname -I
-sudo nmap -sn <hostname>/24
-```
-find ubuntu entry
+- [Instructions](docs/instructions.md)
+- [Hardware](docs/hardware.md)
+- [Software](docs/software.md)
 
-## Updating the Wifi settings on the Raspberry Pi
+## Functionality
 
-```shell
-sudo vim /etc/netplan/50-cloud-init.yaml
-```
-
-## Git user isolation on bot (not great, separate HOMEs)
-
-```shell
-sudo adduser <name>
-git config --global user.name "<name>"
-git config --global user.email "<email>"
-```
-
-## Using ssh key of laptop
-
-```shell
-ssh -A <user>@<ip>
-```
-
-## Launch Node-RED dashboard
-
-```shell
-node-red node-red/<dashboard name>
-```
-
-## Controlling the (Arduino) light intensity via a ROS Node
-
-Deploy `./arduino/light_ros` onto the arduino (use correct Wifi credentials). 
-
-Make sure tcp port (`make light_node`) and topic name match up with the Arduino code. 
-
-In 2 different terminals:
-
-```shell
-roscore
-make light_node
-```
-
-In a third terminal:
-
-```shell
-rostopic pub light_intensity std_msgs/Int16 <value between 0 and 255> --once
-```
-
-## Controlling the (Arduino) light intensity via Node-RED
-
-```shell
-make server
-make light_node
-node-red ./node-red/light_ros.json
-```
-
-## Controlling the motor speed (in RPMs) via a ROS Node
-Deploy `./arduino/motor_ros` onto the arduino (use correct Wifi credentials). 
-
-Make sure tcp port (`make motor_node`) and topic name match up with the Arduino code. 
-
-In 2 different terminals:
-
-```shell
-roscore
-make motor_node
-```
-
-In a third terminal:
-
-```shell
-rostopic pub motor_speed std_msgs/Int16 <value between 0 and 15> --once
-```
-
-or, for negative values:
-
-```shell
-rostopic pub motor_speed std_msgs/Int16 "data: <value between -15 and 15>" --once
-```
-
-## Creating a custom map
-
-```shell
-make robot (on robot)
-roscore
-make gazebo
-make slam
-make teleop 
-```
-
-move around using teleop.
+- Light
+    - Turn ON / OFF
+    - Adjust light sensitivity
+    - Make it blink at an adjustable frequency
+- Motor
+    - Adjust rotation speed
+- Robot
+    - Map the environment
+    - Localize itself in the environment
+    - Navigate to goal pose in the environment
