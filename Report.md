@@ -31,14 +31,27 @@ In addition, any complications, technical issues, or new ideas that arose during
 
 ## System Architecture
 
+<img src="report_images/System_architecture.png" alt="System Architecture schema" width="40%">
+
 ## Robot Flow
+
+<img src="report_images/Robot_flow.png" alt="Robot flow schema" width="40%">
 
 ## Interface
 
+<img src="report_images/Interface.png" alt="Interface" width="40%">
 
 # Hardware Designs
 ## 3D Printing
+
+<p float="left">
+  <img src="report_images/robot_design.png" width="40%" />
+  <img src="report_images/upper_part_design.png" width="40%" />
+</p>
+
 ## Laser Cutting Machine
+
+<img src="report_images/laser_cut.png" alt="Laser cut" width="40%">
 
 # Process
 
