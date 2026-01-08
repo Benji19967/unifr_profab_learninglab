@@ -4,7 +4,7 @@ This project presents the design and implementation of a robotic scenographic sy
 
 # Introduction
 
-This project was developed within the course *Fabrication and Prototyping in the LearningLab* and focuses on the use of robotic systems and digital fabrication as tools for theatrical scenography. The objective of the project was to contribute to a stage performance through a technological element that enhances the visual narrative without interfering with the physical constraints of the play.
+The objective of the project was to contribute to a stage performance through a technological element that enhances the visual narrative without interfering with the physical constraints of the play.
 
 The theatrical piece is set during a train journey and is performed by a single actress who remains physically fixed to the stage, moving only from the ankles upwards. This limitation motivated the search for an alternative way to convey motion and spatial progression. To address this challenge, a TurtleBot Burger was adapted and extended with custom hardware to generate dynamic light and shadow effects on stage, simulating the changing landscape seen from a train window.
 
@@ -28,9 +28,13 @@ In addition, any complications, technical issues, or new ideas that arose during
 
 
 # System Design
+
 ## System Architecture
+
 ## Robot Flow
+
 ## Interface
+
 
 # Hardware Designs
 ## 3D Printing
