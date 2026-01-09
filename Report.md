@@ -32,15 +32,21 @@ In addition, any complications, technical issues, or new ideas that arose during
 
 ## System Architecture
 
-<img src="report_images/System_architecture.png" alt="System Architecture schema" width="40%">
+<p align="center">
+  <img src="report_images/System_architecture.png" alt="System Architecture schema" width="40%">
+</p>
 
 ## Robot Flow
 
-<img src="report_images/Robot_flow.png" alt="Robot flow schema" width="40%">
+<p align="center">
+  <img src="report_images/Robot_flow.png" alt="Robot flow schema" width="40%">
+</p>
 
 ## Interface
 
-<img src="report_images/Interface.png" alt="Interface" width="40%">
+<p align="center">
+  <img src="report_images/Interface.png" alt="Interface" width="40%">
+</p>
 
 # Hardware Designs
 
@@ -58,7 +64,7 @@ In the image of the left, the custom 3D-printed components can be seen assembled
 
 The right image shows only the 3D-printed parts prior to assembly. This view emphasizes the modular nature of the design and the variety of supports created to accommodate the different hardware elements. The use of 3D printing allowed rapid prototyping and iterative refinement of these components throughout the development process.
 
-<p float="left">
+<p float="left" align="center">
   <img src="report_images/robot_design.png" width="40%" />
   <img src="report_images/upper_part_design.png" width="40%" />
 </p>
@@ -71,11 +77,24 @@ The silhouettes were designed digitally and then cut using the laser cutting mac
 
 One of the main reasons for using laser cutting was the high level of precision and the clean edges it provides. This aspect was especially important for the project, as small imperfections in the silhouettes become highly noticeable when projected as shadows. Clean and accurate cuts resulted in sharper, more defined shadows, directly improving the visual quality of the final scenographic effect.
 
-<img src="report_images/laser_cut.png" alt="Laser cut" width="40%">
+<p align="center">
+  <img src="report_images/laser_cut.png" alt="Laser cut" width="40%">
+</p>
 
 # Process
 
 
+<p align="center">
+  <img src="report_images/Process1.png" alt="First images of the process" width="80%">
+</p>
+
+<p align="center">
+  <img src="report_images/Process2.png" alt="Last images of the process" width="80%">
+</p>
+
+<p align="center">
+  <img src="report_images/Process3.png" alt="Final version" width="40%">
+</p>
 
 # Challenges
 
