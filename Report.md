@@ -1,4 +1,5 @@
 # Abstract
+
 This project presents the design and implementation of a robotic scenographic system developed for a theatrical performance set on a train journey. Using a TurtleBot Burger, programmable lighting, and digitally fabricated components, the system projects dynamic shadows to simulate the perception of movement on stage. The project combines autonomous robot navigation, interactive control interfaces, and custom mechanical structures created through 3D printing and laser cutting. The result is a flexible and controllable scenic element that enhances the visual narrative of the performance through light and motion.
 
 
@@ -42,7 +43,20 @@ In addition, any complications, technical issues, or new ideas that arose during
 <img src="report_images/Interface.png" alt="Interface" width="40%">
 
 # Hardware Designs
+
+Several custom components were required to support the lighting system, the rotating shadow mechanism, and the additional electronics while maintaining stability and modularity.
+Digital fabrication tools played a key role in this process. 3D printing was used to create structural and mechanical supports, while the laser cutting machine was employed to produce the shadow silhouettes and flat components. These techniques allowed for rapid iteration, precise customization, and easy adaptation of the system to the requirements of the performance.
+
 ## 3D Printing
+
+3D printing was used to fabricate all custom structural components required to extend the TurtleBot Burger and integrate the lighting and shadow projection system. These parts were designed to be modular, lightweight, and easy to assemble, allowing the system to be mounted securely on top of the robot without interfering with its original structure or sensors.
+
+The printed components include an additional base, support structures for the programmable light, and a vertical mount to hold the stepper motor responsible for rotating the shadow element. The light support was designed with multiple mounting positions on the base, enabling adjustments to its height and placement. Similarly, the motor could be mounted in different positions on the light support, providing flexibility in the overall configuration.
+The rotating piece placed above the motor was also designed with several concentric positions to attach silhouette elements. This modular arrangement makes it possible to vary the distance between the light source and the silhouettes, which is a key aspect of the system. Adjusting this distance significantly affects the resulting shadows, influencing their size, sharpness, and overall visual appearance. This flexibility allows the system to adapt to different silhouettes and stage scenarios, producing distinct visual effects depending on the desired atmosphere.
+
+In the image of the left, the custom 3D-printed components can be seen assembled on the TurtleBot Burger. The printed parts are shown in white, clearly distinguishable from the original robot components, which are black. This contrast highlights the added structures and their integration with the existing platform.
+
+The right image shows only the 3D-printed parts prior to assembly. This view emphasizes the modular nature of the design and the variety of supports created to accommodate the different hardware elements. The use of 3D printing allowed rapid prototyping and iterative refinement of these components throughout the development process.
 
 <p float="left">
   <img src="report_images/robot_design.png" width="40%" />
@@ -51,9 +65,17 @@ In addition, any complications, technical issues, or new ideas that arose during
 
 ## Laser Cutting Machine
 
+The laser cutting machine was used to fabricate the silhouette elements responsible for generating the projected shadows. For this purpose, it was necessary to select a material that was lightweight and easy to cut, while also being more resistant and stable than standard paper. A paper with higher grammage than a regular sheet was chosen, as it provided the required balance between rigidity, durability, and low weight.
+
+The silhouettes were designed digitally and then cut using the laser cutting machine. This approach was significantly more efficient and less costly in terms of time and effort than manual cutting. Once the designs were prepared, the fabrication process was straightforward and easily repeatable.
+
+One of the main reasons for using laser cutting was the high level of precision and the clean edges it provides. This aspect was especially important for the project, as small imperfections in the silhouettes become highly noticeable when projected as shadows. Clean and accurate cuts resulted in sharper, more defined shadows, directly improving the visual quality of the final scenographic effect.
+
 <img src="report_images/laser_cut.png" alt="Laser cut" width="40%">
 
 # Process
+
+
 
 # Challenges
 
