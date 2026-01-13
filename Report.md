@@ -82,6 +82,7 @@ One of the main reasons for using laser cutting was the high level of precision 
 </p>
 
 # Process
+
 The development of the project followed an iterative process that combined research, hardware fabrication, and software implementation.
 
 The first step consisted of evaluating the feasibility of the initial idea. This phase focused mainly on researching the type of motor required for the rotating shadow mechanism. It was determined that a stepper motor was more suitable than a servo motor due to the need for continuous and controllable rotation. In parallel, different lighting solutions were explored in order to generate clear and defined shadows. This issue was later solved when suitable programmable lights were provided. Additionally, initial tests with 3D printing were carried out, revealing that printing components was time-consuming and required careful planning to avoid delays.
@@ -109,6 +110,7 @@ Finally, once all components were correctly fabricated, assembled, and integrate
 </p>
 
 # Challenges
+
 One of the first challenges was the selection of the appropriate motor for the rotating shadow mechanism. The system required a motor capable of rotating continuously in both directions without limitation. A servo motor was not suitable for this purpose, as it can only rotate within a fixed angular range. After researching different options, a stepper motor was selected, as it allows precise and unlimited rotation control. However, finding a stepper motor compatible with Arduino and with low power requirements introduced additional constraints. To meet these requirements, the use of a motor driver was necessary, adding complexity to both the hardware setup and the software control.
 
 Another major challenge was achieving the correct alignment between the light source and the silhouettes to obtain high-quality shadow projections. Depending on the type of silhouettes used and the specific stage configuration, the required distances and sizes varied significantly. Finding an optimal configuration through trial and error would have been inefficient and costly. To address this, several adjustable components were incorporated into the robot design. The light support could be mounted in different positions on the base, allowing the light to be placed either at the center or offset from it. The motor could also be positioned at varying distances relative to the light source, depending on whether the rotating element needed to align centrally or not. Finally, the rotating piece itself featured multiple concentric positions for attaching silhouettes, enabling fine control over the distance between the light and the silhouettes. Although this approach increased the complexity of the mechanical design, it significantly reduced printing time and material waste while providing great flexibility and precise shadow control.
@@ -120,5 +122,17 @@ Finally, several challenges were encountered during software execution and syste
 
 # Future Work
 
+One potential improvement is the ability to project multiple static scenes without the need to change silhouettes manually and without relying on continuous motion. This could be achieved by designing a single rotating disc containing several static scenes distributed along its diameter. In this configuration, the robot would move to a specific position on the stage and project a selected scene. When a scene change is required, the rotating piece would rotate by a small, controlled angle to align a different scene with the light source. This approach would allow multiple scenes to be stored on the robot and displayed sequentially through minimal rotation.
+
+Another possible extension is the creation of two concurrent scenes with a parallax effect. In this scenario, two different silhouette layers would rotate in opposite directions, generating a greater sense of depth and visual complexity. Achieving this effect would require the integration of an additional motor and a modification of the robot’s mechanical structure to allow both rotating elements to move independently while keeping the light source fixed. This enhancement could significantly enrich the visual language of the system and open new creative possibilities for stage design.
+
 # Conclusions
+
+This project demonstrates how robotics and digital fabrication can be effectively applied to a theatrical and scenographic context. By combining autonomous robot navigation, programmable lighting, and custom-fabricated mechanical components, it was possible to create a dynamic visual system that enhances the narrative of the performance without adding physical actors or complex stage machinery.
+
+The use of shadows as a primary visual element proved to be a suitable solution for conveying movement in a constrained stage environment. The modular and adjustable design of the hardware allowed the system to adapt to different silhouettes, lighting conditions, and stage configurations, highlighting the importance of flexibility in prototyping for artistic applications.
+
+Throughout the development process, the project emphasized iterative design, problem-solving, and the integration of hardware and software. Challenges related to motor selection, fabrication constraints, and system reliability provided valuable insights into the practical limitations and considerations of working with robotic platforms in real-world scenarios.
+
+Overall, the project successfully met its objectives and illustrates the potential of repurposing robotic systems as expressive tools in performance and learning environments. The resulting system offers a solid foundation for future extensions and further exploration of robotics as a medium for artistic expression.
 
