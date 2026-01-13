@@ -78,25 +78,45 @@ The silhouettes were designed digitally and then cut using the laser cutting mac
 One of the main reasons for using laser cutting was the high level of precision and the clean edges it provides. This aspect was especially important for the project, as small imperfections in the silhouettes become highly noticeable when projected as shadows. Clean and accurate cuts resulted in sharper, more defined shadows, directly improving the visual quality of the final scenographic effect.
 
 <p align="center">
-  <img src="report_images/laser_cut.png" alt="Laser cut" width="40%">
+  <img src="report_images/laser_cut.png" alt="Laser cut" width="30%">
 </p>
 
 # Process
+The development of the project followed an iterative process that combined research, hardware fabrication, and software implementation.
 
+The first step consisted of evaluating the feasibility of the initial idea. This phase focused mainly on researching the type of motor required for the rotating shadow mechanism. It was determined that a stepper motor was more suitable than a servo motor due to the need for continuous and controllable rotation. In parallel, different lighting solutions were explored in order to generate clear and defined shadows. This issue was later solved when suitable programmable lights were provided. Additionally, initial tests with 3D printing were carried out, revealing that printing components was time-consuming and required careful planning to avoid delays.
+
+After this initial research phase, a basic planning stage was carried out to ensure that all project deadlines could be met while accounting for possible setbacks. The fabrication of 3D-printed components was prioritized, as multiple iterations were expected due to potential design errors or failed prints. Furthermore, several of these components were essential to begin testing the robot in real conditions.
+
+The first parts to be designed and printed were the additional base for the robot and the initial support structures. While these components were being printed, work began on the implementation of the robot’s navigation and mapping system, allowing progress on both hardware and software in parallel.
+
+At a later stage, once the stepper motor and the lighting system were available, the design and printing of the light support, the motor mount, and the rotating piece for holding the silhouettes were carried out. During this period, the control code for the stepper motor and the programmable light was developed and tested independently.
 
 <p align="center">
   <img src="report_images/Process1.png" alt="First images of the process" width="80%">
 </p>
 
+With these components printed and assembled, the system was tested as a whole, which led to the identification of several issues. The main problem was that the initial rotating piece was too small, causing the silhouettes to be positioned too close to the light source and resulting in poor shadow quality. To address this issue, a new and larger rotating piece was designed and printed. At the same time, development of the user interface continued, and the overall software was automated to allow the entire system to be executed easily, enabling any user to control the robot through the interface without technical knowledge.
+
 <p align="center">
   <img src="report_images/Process2.png" alt="Last images of the process" width="80%">
 </p>
+
+Finally, once all components were correctly fabricated, assembled, and integrated, the last phase focused on fine-tuning the system. Multiple simulations and tests were performed to determine the most effective configurations for rotation speed, light intensity, and distance between the light source and the silhouettes, ensuring the best visual results for the stage performance.
 
 <p align="center">
   <img src="report_images/Process3.png" alt="Final version" width="40%">
 </p>
 
 # Challenges
+One of the first challenges was the selection of the appropriate motor for the rotating shadow mechanism. The system required a motor capable of rotating continuously in both directions without limitation. A servo motor was not suitable for this purpose, as it can only rotate within a fixed angular range. After researching different options, a stepper motor was selected, as it allows precise and unlimited rotation control. However, finding a stepper motor compatible with Arduino and with low power requirements introduced additional constraints. To meet these requirements, the use of a motor driver was necessary, adding complexity to both the hardware setup and the software control.
+
+Another major challenge was achieving the correct alignment between the light source and the silhouettes to obtain high-quality shadow projections. Depending on the type of silhouettes used and the specific stage configuration, the required distances and sizes varied significantly. Finding an optimal configuration through trial and error would have been inefficient and costly. To address this, several adjustable components were incorporated into the robot design. The light support could be mounted in different positions on the base, allowing the light to be placed either at the center or offset from it. The motor could also be positioned at varying distances relative to the light source, depending on whether the rotating element needed to align centrally or not. Finally, the rotating piece itself featured multiple concentric positions for attaching silhouettes, enabling fine control over the distance between the light and the silhouettes. Although this approach increased the complexity of the mechanical design, it significantly reduced printing time and material waste while providing great flexibility and precise shadow control.
+
+The fabrication of the rotating piece presented an additional challenge. The initial design was too small, resulting in silhouettes being placed too close to the light source and producing poor shadow quality. When redesigning the piece at a larger scale, the 3D printer was unable to print it as a single component due to size limitations. To overcome this, the rotating piece was redesigned as a modular structure composed of six interlocking parts. This solution ensured sufficient size while maintaining structural robustness and low weight. Careful attention was given to weight distribution, as uneven mass or imprecise assembly could cause imbalance during rotation, negatively affecting the shadow effect. The modular design allowed precise assembly without excessive use of adhesive, minimizing the risk of imbalance.
+
+Finally, several challenges were encountered during software execution and system integration. At times, the robot failed to connect correctly, localization was inaccurate, or the motor and light systems stopped responding. Through iterative debugging, it became clear that the order in which different components and processes were executed was critical. Additionally, maintaining a consistent stage setup after the environment had been mapped proved essential, as any change affected localization accuracy. Ensuring stable power connections, particularly avoiding disconnections of the motor or light once integrated with the ROS system, was also identified as a key factor for reliable operation.
+
 
 # Future Work
 
