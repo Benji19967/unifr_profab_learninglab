@@ -47,7 +47,7 @@ Mapping the environment and localizing the robot still need to be done manually.
 
 The intelligence and control center of the robot is located on the laptop. There are several ROS nodes running on the laptop:
 
-- ROS core — in charge of coordinating all the nodes. 
+- ROS core — in charge of coordination between all the nodes. 
 - ROS serial nodes - to allow serial communication between the Arduinos and the ROS language.
 - ROS server - is a bridge to allow communication between ROS core and Node-RED
 - ROS navigation - in charge of coordinating robot navigation and going to goal poses using a predefined map. 
@@ -68,6 +68,8 @@ There are ROS topics for goal navigation, motor speed control, as well as light 
 </p>
 
 ## Robot Flow
+
+The flow of the robot for the project is as follows. First the environment is mapped and saved manually. Then, using the RVIZ interface the coordinates of three goal poses are obtained, which are inserted into the Node-RED UI. Then the robot is launched and one of the goal poses is chosen in the UI. In response, the robot will move to the defined pose. Once there, the light and motor are manually turned on which starts the projection of the shadow scene onto the background. The light intensity, blinking frequency, and motor rotation speed can all be adjusted. Once the play is over, the robot goes back behind the scene.
 
 <p align="center">
   <img src="report_images/Robot_flow.png" alt="Robot flow schema" width="40%">
