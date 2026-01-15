@@ -45,6 +45,24 @@ Mapping the environment and localizing the robot still need to be done manually.
 
 ## System Architecture
 
+The intelligence and control center of the robot is located on the laptop. There are several ROS nodes running on the laptop:
+
+- ROS core — in charge of coordinating all the nodes. 
+- ROS serial nodes - to allow serial communication between the Arduinos and the ROS language.
+- ROS server - is a bridge to allow communication between ROS core and Node-RED
+- ROS navigation - in charge of coordinating robot navigation and going to goal poses using a predefined map. 
+
+During the mapping and localization phase of the robot the following other nodes are also used:
+
+- ROS slam - to use the lidar and create a map of the environment
+- ROS teleop - to allow remote control of the robot using keyboard keys
+- ROS gazebo - to run the robot in a simulation environment
+
+
+The robot has a core ROS node that enables its basic functionalty and optionally a controller that allows it to navigate autonomously. 
+
+There are ROS topics for goal navigation, motor speed control, as well as light intensity and blinking control. 
+
 <p align="center">
   <img src="report_images/System_architecture.png" alt="System Architecture schema" width="40%">
 </p>
@@ -56,6 +74,8 @@ Mapping the environment and localizing the robot still need to be done manually.
 </p>
 
 ## Interface
+
+Light, motor and robot position control all happen through a Node-RED interface that talks to the respective components via ROS topics. 
 
 <p align="center">
   <img src="report_images/Interface.png" alt="Interface" width="40%">
