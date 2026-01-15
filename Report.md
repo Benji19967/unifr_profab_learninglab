@@ -32,7 +32,7 @@ In addition, any complications, technical issues, or new ideas that arose during
 
 Communication between electronic parts was handled wirelessly using the Robot Operating System (ROS).
 
-The light has an integrated Arduino. The stepper motor was connected through a driver to another Arduino. Both Arduinos could be configured to connect to WiFi. On both of them a ROS package was installed, which allowed serialized communication with ROS Core. The light is configurable in two ways: the intensity can be adjusted, and it can be made to blink at different frequencies. For the motor, the speed and direction of rotation is configurable. 
+The light has an integrated Arduino. The stepper motor was connected through a driver to another Arduino. Both Arduinos could be configured to connect to WiFi. On both of them a ROS package was installed, which allowed serialized communication with ROS Core running on a laptop. The light is configurable in two ways: the intensity can be adjusted, and it can be made to blink at different frequencies. For the motor, the speed and direction of rotation is configurable. 
 
 Sending commands to the light and motor can be done via ROS commands through the CLI, or via Python code, or via a Node-RED interface. The team members ended up using the Node-RED interface as it is most flexible and easy to set up. The auto-generated Node-RED config for the final interface can be found [here](node-red/interface.json).
 
@@ -40,7 +40,7 @@ The code for the light Arduino can be found [here](arduino/light_ros/light_ros.i
 
 An attempt was made to make the robot fully autonomous via Python code. The code is not fully tested / functional, but can be found [here](src/turtlebot3_profab/scripts/controller.py). The launch script for the controller can be found [here](src/turtlebot3_profab/launch/controller.launch).
 
-Mapping the environment and localizing the robot still need to be done manually. Instructions for how to do so and for many other commands can be found in the [docs](docs/instructions.md).
+Mapping the environment and localizing the robot still need to be done manually. Instructions for how to do so and for many other commands can be found in the [docs](docs/instructions.md). The [makefile](makefile) provides shortcuts for many commonly used commands. 
 
 
 ## System Architecture
