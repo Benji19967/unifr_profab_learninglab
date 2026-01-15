@@ -34,7 +34,7 @@ Communication between electronic parts was handled wirelessly using the Robot Op
 
 The light has an integrated Arduino. The stepper motor was connected through a driver to another Arduino. Both Arduinos could be configured to connect to WiFi. On both of them a ROS package was installed, which allowed serialized communication with ROS Core. The light is configurable in two ways: the intensity can be adjusted, and it can be made to blink at different frequencies. For the motor, the speed and direction of rotation is configurable. 
 
-Sending commands to the light and motor can be done via ROS commands through the CLI, or via Python code, or via a Node-RED interface. The team members ended up using the Node-RED interface as it is most flexible and easy to set up. The auto-generated Node-RED config for the final interface can be found here
+Sending commands to the light and motor can be done via ROS commands through the CLI, or via Python code, or via a Node-RED interface. The team members ended up using the Node-RED interface as it is most flexible and easy to set up. The auto-generated Node-RED config for the final interface can be found [here](node-red/interface.json).
 
 The code for the light Arduino can be found [here](arduino/light_ros/light_ros.ino) and the code for the motor Arduino [here](arduino/motor_ros/motor_ros.ino).
 
