@@ -77,7 +77,7 @@ The flow of the robot for the project is as follows. First the environment is ma
 
 ## Interface
 
-Light, motor and robot position control all happen through a Node-RED interface that talks to the respective components via ROS topics. 
+Light, motor and robot position control all happen through a Node-RED interface that talks to the respective components via ROS topics. The three positions define goal poses and, when clicked, send the robot in front of one of the scenes to project the shadow. 
 
 <p align="center">
   <img src="report_images/Interface.png" alt="Interface" width="40%">
