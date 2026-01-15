@@ -8,8 +8,8 @@
 
 ## Motor
 
-- Stepper motor 
-- Motor driver
+- Stepper motor (Whadda WPI401)
+- Motor driver (ULN2003)
 - Arduino ESP32-S3-Mini (coonected to battery pack)
     - Connect motor via breadboard
 
