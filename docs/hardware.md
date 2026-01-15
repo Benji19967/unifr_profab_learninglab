@@ -1,22 +1,21 @@
 # Hardware
 
-TODO: add images
-
 ## Turtlebot 3
 
-TODO: describe components we use
 - Lidar
+- Raspberry Pi
+- ...
 
 ## Motor
 
 - Stepper motor 
 - Motor driver
-- Arduino ESP32 (coonected to battery pack)
+- Arduino ESP32-S3-Mini (coonected to battery pack)
     - Connect motor via breadboard
 
 ## Light
 
-- Light (with builtin Arduino)
+- Light (with builtin Arduino ESP32-C3-MINI-1)
 
 ## Battery
 
