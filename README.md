@@ -1,13 +1,35 @@
-# Prototyping and Fabrication in the Learning Lab
+# Prototyping and Fabrication in the Learning Lab <!-- omit in toc -->
 
 Project for the course Prototyping and Fabrication in the Learning Lab at the University of Fribourg.
 
 Official course repo: https://github.com/nembrinj/protofablab/tree/main
 
+<p float="left" align="left">
+  <img src="report_images/robot_design.png" width="40%" />
+</p>
+
+# Table of contents <!-- omit in toc -->
+- [Abstract](#abstract)
+- [Introduction](#introduction)
+  - [Concept](#concept)
+  - [Organisation](#organisation)
+- [System Design](#system-design)
+  - [System Architecture](#system-architecture)
+  - [Robot Flow](#robot-flow)
+  - [Interface](#interface)
+- [Repository Structure](#repository-structure)
+- [Hardware Designs](#hardware-designs)
+  - [3D Printing](#3d-printing)
+  - [Laser Cutting Machine](#laser-cutting-machine)
+- [Process](#process)
+- [Challenges](#challenges)
+- [Future Work](#future-work)
+- [Conclusions](#conclusions)
+
+
 # Abstract
 
 This project presents the design and implementation of a robotic scenographic system developed for a theatrical performance set on a train journey. Using a TurtleBot Burger, programmable lighting, and digitally fabricated components, the system projects dynamic shadows to simulate the perception of movement on stage. The project combines autonomous robot navigation, interactive control interfaces, and custom mechanical structures created through 3D printing and laser cutting. The result is a flexible and controllable scenic element that enhances the visual narrative of the performance through light and motion.
-
 
 # Introduction
 
@@ -73,6 +95,7 @@ There are ROS topics for goal navigation, motor speed control, as well as light 
   <img src="report_images/System_architecture.png" alt="System Architecture schema" width="40%">
 </p>
 
+
 ## Robot Flow
 
 The flow of the robot for the project is as follows. First the environment is mapped and saved manually. Then, using the RVIZ interface the coordinates of three goal poses are obtained, which are inserted into the Node-RED UI. Then the robot is launched and one of the goal poses is chosen in the UI. In response, the robot will move to the defined pose. Once there, the light and motor are manually turned on which starts the projection of the shadow scene onto the background. The light intensity, blinking frequency, and motor rotation speed can all be adjusted. Once the play is over, the robot goes back behind the scene.
@@ -88,6 +111,34 @@ Light, motor and robot position control all happen through a Node-RED interface 
 <p align="center">
   <img src="report_images/Interface.png" alt="Interface" width="40%">
 </p>
+
+# Repository Structure
+
+    .
+    │
+    ├── 3d_models                           # 3D models of pieces to print —- .mf and .bgcode files
+    │
+    ├── arduino                             # Arduino code to control the light and motor
+    │
+    ├── docs                    
+    │   ├── hardware.md                     # Hardware used for the project
+    │   └── instructions.md                 # How-tos: Raspberry Pi, Arduinos, Node-RED, Turtlebot, ROS
+    │
+    ├── map                                 # Maps of the environment created using ROS Navigation
+    │   
+    ├── node-red                            # Node-RED dashboard files
+    │   
+    ├── report_images                       # Assets used in the report
+    │   
+    ├── requirements                        # Dependencies needed to set up the robot and the workstation
+    │
+    ├── src / turtlebot3_profab / launch    # Launch scripts
+    │
+    ├── src / turtlebot3_profab / scripts   # Python scripts to control the robot
+    │
+    ├── makefile                            # Shortcuts for ROS commands 
+    │
+    └── README.md
 
 # Hardware Designs
 

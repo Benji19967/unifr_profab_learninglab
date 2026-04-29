@@ -1,5 +1,6 @@
 # Ignore packages by default
 src/*/
+.DS_Store
 
 # Add our packages
 !src/turtlebot3_profab/
