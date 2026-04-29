@@ -92,7 +92,7 @@ The robot has a core ROS node that enables its basic functionalty and optionally
 There are ROS topics for goal navigation, motor speed control, as well as light intensity and blinking control. 
 
 <p align="center">
-  <img src="report_images/System_architecture.png" alt="System Architecture schema" width="40%">
+  <img src="report_images/System_architecture.png" alt="System Architecture schema" width="60%">
 </p>
 
 
@@ -101,7 +101,7 @@ There are ROS topics for goal navigation, motor speed control, as well as light 
 The flow of the robot for the project is as follows. First the environment is mapped and saved manually. Then, using the RVIZ interface the coordinates of three goal poses are obtained, which are inserted into the Node-RED UI. Then the robot is launched and one of the goal poses is chosen in the UI. In response, the robot will move to the defined pose. Once there, the light and motor are manually turned on which starts the projection of the shadow scene onto the background. The light intensity, blinking frequency, and motor rotation speed can all be adjusted. Once the play is over, the robot goes back behind the scene.
 
 <p align="center">
-  <img src="report_images/Robot_flow.png" alt="Robot flow schema" width="40%">
+  <img src="report_images/Robot_flow.png" alt="Robot flow schema" width="50%">
 </p>
 
 ## Interface
@@ -109,7 +109,7 @@ The flow of the robot for the project is as follows. First the environment is ma
 Light, motor and robot position control all happen through a Node-RED interface that talks to the respective components via ROS topics. The three positions define goal poses and, when clicked, send the robot in front of one of the scenes to project the shadow. 
 
 <p align="center">
-  <img src="report_images/Interface.png" alt="Interface" width="40%">
+  <img src="report_images/Interface.png" alt="Interface" width="50%">
 </p>
 
 # Repository Structure
